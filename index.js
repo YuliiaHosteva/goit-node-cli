@@ -12,22 +12,22 @@ program.parse(process.argv);
 
 const argv = program.opts();
 
-function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
-      listContacts().then(console.table);
+      console.table(await listContacts());
       break;
 
     case 'get':
-      getContactById(Number(id)).then(console.log);
+      console.log(await getContactById(id));
       break;
 
     case 'add':
-      addContact(name, email, phone).then(console.log);
+      console.log(await addContact(name, email, phone));
       break;
 
     case 'remove':
-      removeContact(Number(id)).then(console.log);
+      console.log(await removeContact(id));
       break;
 
     default:
